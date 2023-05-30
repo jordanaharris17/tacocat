@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Jordan Harris</title>
+    <title>Taco Cat: A Coding Project By Jordan Harris</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +21,7 @@
     <!--Nav section-->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="img/JordanHarris.png" class="d-inline-block align-text-top" alt="Jordan Harris Logo" width="30" height="24"> APP NAME</a>
+                <a class="navbar-brand" href="#"><img src="img/JordanHarris.png" class="d-inline-block align-text-top" alt="Jordan Harris Logo" width="30" height="24"> Taco Cat</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -50,20 +50,52 @@
         <!--Main section-->
         <main class="flex-shrink-0">
             <div class="container py-4 px-5 mt-5">
-                <h2 class="border-1 border-bottom border-dark">The Code for The Hundred.</h2>
+                <h2 class="border-1 border-bottom border-dark">The Code for Taco Cat.</h2>
                 <div class="row row-cols-1 row-cols-lg-2">
                     <div class="col-lg-8">
                         <pre class="line-numbers"><code class="language-javascript">
-                            //Call Hello World
-                            function HellowWorld() {
-                                alert("hello world");
+                            //get our user input
+                            function getValue() {
+                                //make sure the alert is invisible
+                                document.getElementById("alert").classList.remove("invisible");
+                                //get user string from the page
+                                let userString = document.getElementById("userString").value;
+                                //check for a palindrome
+                                let returnObj = checkForPalindrome(userString);
+                                //diplay out message to the screen
+                                displayMessage(returnObj);
+                            }
+                            //check if string is a palindrome
+                            function checkForPalindrome(userString) {
+                                userString = userString.toLowerCase();
+                                //remove spaces and special characters
+                                let regex = /[^a-z0-9]/gi;
+                                userString = userString.replace(regex,"");
+                                let revString = [];
+                                let returnObj = {};
+                                for (let i = userString.length - 1; i >= 0; i--) {
+                                    revString += userString[i];
+                                }
+                                if (revString == userString) {
+                                    returnObj.msg = "Well done! You entered a Palindrome!"
+                                }
+                                else {
+                                    returnObj.msg = "Sorry! You did not enter a Palindrome!"
+                                }
+                                returnObj.reversed = revString;
+                                return returnObj;
+                            }
+                            //Display a message to the string
+                            function displayMessage(returnObj) {
+                                document.getElementById("alertHeader").innerHTML = returnObj.msg;
+                                document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed}`;
+                                document.getElementById("alert").classList.remove("invisible");
                             }
                         </code></pre>
                     </div>
                     <div class="col-lg-4">
-                        <p>The Code is structured in one function.</p>
-                        <h5>Hello World</h5>
-                        <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                        <h5>Taco Cat</h5>
+                        <p>It first checks if all charcters within the string is characters, then simply checks if the string is a palindrome or not.</p>
                     </div>
                 </div>
             </div>
